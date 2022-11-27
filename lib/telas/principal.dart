@@ -111,8 +111,8 @@ class _TelaNavegacaoState extends State<TelaNavegacao> {
             Home(),
             Pacotes(),
             Mapa(),
-            Perfil(),
-            NovosPacotes()
+            NovosPacotes(),
+            Perfil()
           ],
         ),
       ),
