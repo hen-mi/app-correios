@@ -12,6 +12,7 @@ class _PerfilState extends State<Perfil> {
   Widget build(BuildContext context) {
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.green[400],
         body: Center(
