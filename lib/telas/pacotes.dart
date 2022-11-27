@@ -14,7 +14,7 @@ class _PacotesState extends State<Pacotes> {
       home: Scaffold(
         backgroundColor: Colors.blue[400],
         body: Center(
-          child: Text("Pacotes"),
+          child: Text("Pacotess"),
         ),
       ),
     );
