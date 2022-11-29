@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:correios/telas/adicionar.dart';
@@ -23,6 +24,11 @@ class _MapaState extends State<Mapa> {
 
   List<LatLng> coordenadasPolyline = [];
   List<LatLng> coordenadasPassadas = [];
+  //void nomeLugar(LatLng coordenada) async {
+  //
+  //   List<Placemark> nome = await placemarkFromCoordinates(coordenada, 'pt_BR');
+  // }
+
   void getPolyPoints(List<LatLng> coordenadasPolyline) async {
     PolylinePoints polylinePoints = PolylinePoints();
 
@@ -79,6 +85,14 @@ class _MapaState extends State<Mapa> {
 
     return Scaffold(
 
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Mapa para a rota atual',
+        style: TextStyle(
+          color: Colors.white,
+        )),
+        backgroundColor: Colors.orange[300],
+      ),
         body: Stack(
           children: <Widget>[
             GoogleMap(
@@ -118,11 +132,11 @@ class _MapaState extends State<Mapa> {
       ),
               },
             ),
+
             Container(
-              margin: const EdgeInsets.only(top: 70.0),
+              margin: const EdgeInsets.only(right: 80, left: 80),
+
               child: SizedBox(
-                width: 150,
-                height: 45,
 
                 child: ElevatedButton(
                     style: ButtonStyle(
@@ -154,73 +168,16 @@ class _MapaState extends State<Mapa> {
 
                       });
                     },
-                    child: Text(
-                      "teste",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('end. destino'),
+                      ],
                     )
                 ),
               ),
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 50.0),
-              child: SizedBox(
-                width: 150,
-                height: 45,
 
-                child: ElevatedButton(
-                    style: ButtonStyle(
-
-                      shape: MaterialStateProperty.all<
-                          RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-
-                          )
-                      ),
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          Colors.deepOrange),
-                      foregroundColor: MaterialStateProperty.all<Color>(
-                          Colors.white),
-                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                            (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.hovered))
-                            return Colors.black.withOpacity(0.04);
-                          if (states.contains(MaterialState.focused) ||
-                              states.contains(MaterialState.pressed))
-                            return Colors.black.withOpacity(0.20);
-                          return null;
-                        },
-                      ),
-                    ),
-                    onPressed: () {
-
-                      print('Botão funciona');
-                      //List<Location> origem = await locationFromAddress(OrigemControlador.text);
-
-                      //List<Location> destino = await locationFromAddress(OrigemControlador.text);
-
-
-                      //rota.origem = LatLng(origem.last.longitude, origem.last.latitude);
-                      //rota.destino = LatLng(destino.last.longitude, destino.last.latitude);
-
-                      Navigator.pop(
-                        context);
-                    },
-                    child: Text(
-                      'voltar',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-
-                      ),
-                    )
-                ),
-              ),
-            ),
           ],
         ),
       );

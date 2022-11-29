@@ -55,56 +55,7 @@ class _TelaNavegacaoState extends State<TelaNavegacao> {
             ),
           ],
         ),
-        appBar: AppBar(
-          backgroundColor: Colors.orange[300],
-          centerTitle: true,
-          title: IndexedStack(
-            index: TelaAtual,
-            children: const <Text>[
-              Text("Correios",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text("Pacotes",
-                textAlign: TextAlign.justify,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text("Mapa",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text("Novos Pacotes",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text("Perfil",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
 
-        ),
         body: IndexedStack(
           index: TelaAtual,
           children: const <Widget>[

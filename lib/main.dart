@@ -21,7 +21,10 @@ void main() {
       "/Perfil": (context) => Perfil(),
 
     },
-  ));
+
+  )
+
+  );
 }
 
 
