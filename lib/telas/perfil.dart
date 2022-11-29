@@ -76,13 +76,13 @@ class Perfil extends StatelessWidget {
                       Column(
                         children: const <Widget>[
                           Icon(Icons.account_box),
-                          Text('Verificado')
+                          Text('Verificado', textAlign: TextAlign.center,)
                         ],
                       ),
                       Column(
                         children: const <Widget>[
                           Icon(Icons.access_alarms),
-                          Text('Pontual')
+                          Text('Pontual', textAlign: TextAlign.center,)
                         ],
                       ),
                       /*Column(
@@ -94,7 +94,7 @@ class Perfil extends StatelessWidget {
                       Column(
                         children: const <Widget>[
                           Icon(Icons.account_balance_sharp),
-                          Text('Empresa Parceira')
+                          Text('Empresa Parceira', textAlign: TextAlign.center,)
                         ],
                       )
                     ],
@@ -187,13 +187,6 @@ class Perfil extends StatelessWidget {
         ],
       ),
     );
+
   }
 }
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-D
