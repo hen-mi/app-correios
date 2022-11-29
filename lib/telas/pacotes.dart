@@ -1,5 +1,8 @@
 import 'package:correios/repositories/pacote_repository.dart';
+import 'package:correios/telas/mostrar_pacote.dart';
 import 'package:flutter/material.dart';
+
+import '../models/pacote.dart';
 
 class Pacotes extends StatefulWidget {
   const Pacotes({Key? key}) : super(key: key);
@@ -9,6 +12,15 @@ class Pacotes extends StatefulWidget {
 }
 
 class _PacotesState extends State<Pacotes> {
+  mostrarPacote(Pacote pacote){
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (_) => MostrarPacote(pacote: pacote),
+        ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final tabela = PacoteRepository.tabela;
@@ -29,7 +41,8 @@ class _PacotesState extends State<Pacotes> {
                 color: Colors.black87,
               ),
             ),
-            selectedTileColor: Colors.amber,
+            onLongPress: (){},
+            onTap: () => mostrarPacote(tabela[pacote]),
           );
         },
         padding: EdgeInsets.all(16),
