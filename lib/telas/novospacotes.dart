@@ -10,13 +10,11 @@ class NovosPacotes extends StatefulWidget {
 class _NovosPacotesState extends State<NovosPacotes> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.orange[400],
         body: Center(
           child: Text("Novos Pacotes"),
         ),
-      ),
     );
   }
 }
