@@ -14,13 +14,13 @@ class _PacotesState extends State<Pacotes> {
     final tabela = PacoteRepository.tabela;
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.blue[400],
+        backgroundColor: Colors.grey[400],
         body: ListView.separated(
-          itemBuilder: (BuildContext context, int moeda){
+          itemBuilder: (BuildContext context, int pacote){
             return ListTile(
-              leading: Image.asset(tabela[moeda].icone),
-              title: Text("Pacote: ${tabela[moeda].codigoRast}"),
-              trailing: Text("${tabela[moeda].peso.toString()}Kg"),
+              leading: Image.asset(tabela[pacote].icone),
+              title: Text("Pacote: ${tabela[pacote].codigoRast}"),
+              trailing: Text("${tabela[pacote].peso.toString()}Kg"),
             );
           },
           padding: EdgeInsets.all(16),
