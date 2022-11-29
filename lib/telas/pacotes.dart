@@ -3,6 +3,7 @@ import 'package:correios/telas/mostrar_pacote.dart';
 import 'package:flutter/material.dart';
 
 import '../models/pacote.dart';
+import 'adicionar.dart';
 
 class Pacotes extends StatefulWidget {
   const Pacotes({Key? key}) : super(key: key);
@@ -28,21 +29,24 @@ class _PacotesState extends State<Pacotes> {
       backgroundColor: Colors.grey[800],
       body: ListView.separated(
         itemBuilder: (BuildContext context, int pacote){
-          return ListTile(
-            leading: Image.asset(tabela[pacote].icone),
-            title: Text("Pacote: ${tabela[pacote].codigoRast}",
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-             ),
-            ),
-            trailing: Text("${tabela[pacote].peso.toString()}Kg",
-              style: const TextStyle(
-                color: Colors.black87,
+          return Dismissible(
+              child: ListTile(
+                leading: Image.asset(tabela[pacote].icone),
+                title: Text("Pacote: ${tabela[pacote].codigoRast}",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                trailing: Text("${tabela[pacote].peso.toString()}Kg",
+                  style: const TextStyle(
+                    color: Colors.black87,
+                  ),
+                ),
+                onLongPress: (){},
+                onTap: () => mostrarPacote(tabela[pacote]),
               ),
-            ),
-            onLongPress: (){},
-            onTap: () => mostrarPacote(tabela[pacote]),
+            key: Key(tabela[pacote].codigoRast),
           );
         },
         padding: EdgeInsets.all(16),
@@ -50,7 +54,14 @@ class _PacotesState extends State<Pacotes> {
         itemCount: tabela.length,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => AdicionarNovoPacote(),
+              ),
+          );
+        },
         child: Icon(Icons.add),
         backgroundColor: Colors.amber,
       ),
