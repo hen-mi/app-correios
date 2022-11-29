@@ -10,14 +10,12 @@ class Pacotes extends StatefulWidget {
 class _PacotesState extends State<Pacotes> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return
+Scaffold(
         backgroundColor: Colors.blue[400],
         body: Center(
           child: Text("Pacotes"),
         ),
-      ),
     );
   }
 }

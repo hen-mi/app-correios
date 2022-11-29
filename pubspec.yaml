@@ -40,6 +40,13 @@ dependencies:
   geocoding: ^2.0.5
   http: ^0.13.5
   flutter_polyline_points: ^1.0.0
+  google_maps_webservice: ^0.0.19
+  flutter_google_places: ^0.3.0
+  awesome_snackbar_content: ^0.1.0
+  address_search_field: ^5.0.3
+  location: ^4.4.0
+  geocoder: ^0.2.1
+  geolocator: ^9.0.2
 
 dev_dependencies:
   flutter_test:

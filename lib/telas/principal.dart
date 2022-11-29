@@ -3,7 +3,7 @@ import 'package:correios/google-maps/mapa.dart';
 import 'perfil.dart';
 import 'pacotes.dart';
 import 'novospacotes.dart';
-
+import 'adicionar.dart';
 
 class TelaNavegacao extends StatefulWidget {
   const TelaNavegacao({Key? key}) : super(key: key);
@@ -17,9 +17,8 @@ class _TelaNavegacaoState extends State<TelaNavegacao> {
   int TelaAtual = 0;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return  Scaffold(
+
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: TelaAtual,
@@ -86,7 +85,7 @@ class _TelaNavegacaoState extends State<TelaNavegacao> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text("Perfil",
+              Text("Novos Pacotes",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -94,7 +93,7 @@ class _TelaNavegacaoState extends State<TelaNavegacao> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text("Novos Pacotes",
+              Text("Perfil",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -112,12 +111,12 @@ class _TelaNavegacaoState extends State<TelaNavegacao> {
             Home(),
             Pacotes(),
             Mapa(),
-            NovosPacotes(),
+            AdicionarNovoPacote(),
             Perfil()
           ],
         ),
-      ),
-    );
+      );
+
   }
 }
 
@@ -131,14 +130,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.red[400],
         body: Center(
           child: Text("Tela Home"),
         ),
-      ),
     );
   }
 }
