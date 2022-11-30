@@ -21,9 +21,21 @@ class AdicionarNovoPacote extends StatefulWidget {
 
 class _AdicionarNovoPacoteState extends State<AdicionarNovoPacote> {
 
+  final _form = GlobalKey<FormState>();
+  final _form2 = GlobalKey<FormState>();
+
   final TextEditingController DestinoControlador = TextEditingController();
   final TextEditingController OrigemControlador = TextEditingController();
+  final TextEditingController ProprietarioControlador = TextEditingController();
 
+  confirmar(){
+    if(_form.currentState!.validate()) {
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Pacote adicionado com sucesso!'),)
+      );
+    }
+  }
   @override
 
 
@@ -45,6 +57,20 @@ class _AdicionarNovoPacoteState extends State<AdicionarNovoPacote> {
 
         child: Scaffold(
           backgroundColor: Colors.white,
+
+          appBar: AppBar(
+            centerTitle: true,
+            iconTheme: IconThemeData(
+              size: 30.0,
+              color: Colors.white,
+
+            ),
+            title: Text('Adicionar um novo pacote',
+                style: TextStyle(
+                  color: Colors.white,
+                )),
+
+          ),
           body: Padding(
 
         padding: const EdgeInsets.all(16.0),
@@ -56,41 +82,89 @@ class _AdicionarNovoPacoteState extends State<AdicionarNovoPacote> {
                 "Endereço de Origem",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ), */
-              TextFormField(
+              Form(
+                key: _form,
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 20),
 
-                controller: OrigemControlador,
-                textCapitalization: TextCapitalization.words,
+                      child: TextFormField(
 
-                decoration: InputDecoration(hintText: "Rua Nome da rua, 777, Cidade",
-                  border: OutlineInputBorder(
-                    borderRadius: new BorderRadius.circular(20.0),
-                    borderSide:  BorderSide(color: Colors.deepOrange),
+                        controller: ProprietarioControlador,
+                        textCapitalization: TextCapitalization.words,
 
+                        decoration: InputDecoration(hintText: "Pedro Alvares Cabral",
+                            border: OutlineInputBorder(
+                              borderRadius: new BorderRadius.circular(20.0),
+                              borderSide:  BorderSide(color: Colors.deepOrange),
+
+                            ),
+                            labelText: "Proprietário",
+                            prefixIcon: Icon(Icons.person_add_alt)
+
+                        ),
+                        validator: (value) {
+                          if(value!.isEmpty){
+                            return 'Informe um nome válido';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 20),
+
+                  child: TextFormField(
+
+                  controller: OrigemControlador,
+                  textCapitalization: TextCapitalization.words,
+
+                  decoration: InputDecoration(hintText: "Rua Nome da rua, 777, Cidade",
+                      border: OutlineInputBorder(
+                        borderRadius: new BorderRadius.circular(20.0),
+                        borderSide:  BorderSide(color: Colors.deepOrange),
+
+                      ),
+                      labelText: "Origem",
+                      prefixIcon: Icon(Icons.add_location_alt)
                   ),
-                    labelText: "Origem",
+                  validator: (value) {
+                    if(value!.isEmpty){
+                      return 'Informe um endereço válido';
+                    }
+                    return null;
+                  },
                 ),
+              ),
+                    TextFormField(
+                      controller: DestinoControlador,
+                      textCapitalization: TextCapitalization.words,
+                      decoration: InputDecoration(hintText: "Rua Nome da rua, 777, Cidade",
+                        border: OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(20.0),
 
+
+                        ),
+                        labelText: "Destino",
+                        prefixIcon: Icon(Icons.add_location_alt_outlined),
+                      ),
+                      validator: (value) {
+                        if(value!.isEmpty){
+                          return 'Informe um endereço válido';
+                        }
+                        return null;
+                      },
+                    ),
+              ],
+                ),
               ),
               Container(
-               margin: const EdgeInsets.only(top: 25.0),
+                margin: const EdgeInsets.only(top: 25.0),
               ),
 
-              TextFormField(
-                controller: DestinoControlador,
-                textCapitalization: TextCapitalization.words,
-                decoration: InputDecoration(hintText: "Rua Nome da rua, 777, Cidade",
-                  border: OutlineInputBorder(
-                    borderRadius: new BorderRadius.circular(20.0),
-
-
-                  ),
-                    labelText: "Destino",
-
-                ),
-
-              ),
               Container(
-                margin: const EdgeInsets.only(top: 50.0),
+                margin: const EdgeInsets.only(top: 5.0),
                 child: SizedBox(
                   width: 150,
                   height: 45,
@@ -121,23 +195,26 @@ class _AdicionarNovoPacoteState extends State<AdicionarNovoPacote> {
                         ),
                       ),
                       onPressed: () async {
+                        if(_form.currentState!.validate()) {
+                          print('Botão funciona');
+                          List<Location> origem = await locationFromAddress(OrigemControlador.text);
 
-                        print('Botão funciona');
-                        List<Location> origem = await locationFromAddress(OrigemControlador.text);
+                          List<Location> destino = await locationFromAddress(DestinoControlador.text);
 
-                        List<Location> destino = await locationFromAddress(DestinoControlador.text);
+                          Rota rota = Rota(LatLng(0,0), LatLng(0,0));
+                          rota.origem = LatLng(origem.last.latitude, origem.last.longitude);
+                          rota.destino = LatLng(destino.last.latitude, destino.last.longitude);
 
-                        Rota rota = Rota(LatLng(0,0), LatLng(0,0));
-                        rota.origem = LatLng(origem.last.latitude, origem.last.longitude);
-                        rota.destino = LatLng(destino.last.latitude, destino.last.longitude);
+                          setState(() {
 
-                        setState(() {
+                            if(rota.origem != LatLng(0,0) && rota.destino != LatLng(0,0)) {
+                              confirmar();
+                              Navigator.pushNamed(context, "/Mapa", arguments: {'origem': rota.origem,'destino': rota.destino} );
+                            }
 
-                          if(rota.origem != LatLng(0,0) && rota.destino != LatLng(0,0)) {
-                            Navigator.pushNamed(context, "/Mapa", arguments: {'origem': rota.origem,'destino': rota.destino} );
-                          }
+                          });
+                        }
 
-                        });
 
                       },
 
@@ -152,12 +229,13 @@ class _AdicionarNovoPacoteState extends State<AdicionarNovoPacote> {
                   ),
                 ),
               ),
-            ],
+          ],
+        )
+
           ),
         ),
       ),
         ),
-    ),
     );
   }
 }

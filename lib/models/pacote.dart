@@ -1,5 +1,6 @@
 class Pacote{
   String icone;
+  String origem;
   String destino;
   String proprietario;
   double peso;
@@ -7,6 +8,7 @@ class Pacote{
 
   Pacote({
     required this.icone,
+    required this.origem,
     required this.destino,
     required this.proprietario,
     required this.peso,

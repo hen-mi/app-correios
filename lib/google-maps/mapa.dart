@@ -21,13 +21,25 @@ class _MapaState extends State<Mapa> {
 
   LatLng ponto0 = LatLng(-23.55656054031504, -46.66370475081876);
   LatLng destino =  LatLng(-23.50215303231884, -46.66243565379635);
+  String nome = 'vazio';
 
   List<LatLng> coordenadasPolyline = [];
   List<LatLng> coordenadasPassadas = [];
-  //void nomeLugar(LatLng coordenada) async {
-  //
-  //   List<Placemark> nome = await placemarkFromCoordinates(coordenada, 'pt_BR');
-  // }
+
+     nomeLugar(LatLng coordenada) async {
+
+     List<Placemark> nome = await placemarkFromCoordinates(coordenada.latitude, coordenada.longitude, localeIdentifier: "pt_BR");
+
+     String? rua = nome.first.street;
+     String? bairro = nome.first.subLocality;
+     String? cidade = nome.first.administrativeArea;
+     String endereco = '${rua}, ${bairro}, ${cidade}';
+
+    return endereco;
+   }
+    void foo() async {
+        nome = 'Destino: ' + await nomeLugar(destino);
+    }
 
   void getPolyPoints(List<LatLng> coordenadasPolyline) async {
     PolylinePoints polylinePoints = PolylinePoints();
@@ -36,6 +48,7 @@ class _MapaState extends State<Mapa> {
         "AIzaSyB5b2mgPy5ZDihq3icRRok4GntSUuRQUHI",
         PointLatLng(ponto0.latitude, ponto0.longitude),
         PointLatLng(destino.latitude, destino.longitude));
+
 
     if(resultado.points.isNotEmpty) {
       //
@@ -50,11 +63,15 @@ class _MapaState extends State<Mapa> {
   @override
   void initState() {
 
+    foo();
+
     getPolyPoints(coordenadasPolyline);
     if(ponto0 != LatLng(-23.55656054031504, -46.66370475081876) && coordenadasPassadas != null){
       getPolyPoints(coordenadasPassadas);
     }
     Future.delayed(Duration.zero, () {
+
+
 
       final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
 
@@ -63,6 +80,7 @@ class _MapaState extends State<Mapa> {
         setState(() {
           ponto0 = arguments['origem'];
           destino = arguments['destino'];
+          foo();
           moveMapCamera(ponto0);
           coordenadasPolyline.clear();
           coordenadasPassadas.clear();
@@ -87,11 +105,15 @@ class _MapaState extends State<Mapa> {
 
       appBar: AppBar(
         centerTitle: true,
+        iconTheme: IconThemeData(
+          size: 30.0,
+          color: Colors.white,
+
+        ),
         title: Text('Mapa para a rota atual',
         style: TextStyle(
           color: Colors.white,
         )),
-        backgroundColor: Colors.orange[300],
       ),
         body: Stack(
           children: <Widget>[
@@ -134,8 +156,9 @@ class _MapaState extends State<Mapa> {
             ),
 
             Container(
-              margin: const EdgeInsets.only(right: 80, left: 80),
+              margin: const EdgeInsets.only(top: 20,right: 40, left: 40),
 
+              height: 40,
               child: SizedBox(
 
                 child: ElevatedButton(
@@ -164,14 +187,20 @@ class _MapaState extends State<Mapa> {
                       ),
                     ),
                     onPressed: () {
-                      setState(() {
 
+                      setState(() {
+                        moveMapCamera(destino);
                       });
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('end. destino'),
+
+                          Expanded(
+    child:Text('$nome', textAlign: TextAlign.center,),
+    ),
+
+
                       ],
                     )
                 ),

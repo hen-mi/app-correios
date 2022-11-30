@@ -12,6 +12,8 @@ void main() {
      initialRoute: "/Home",
     theme: ThemeData(
       primarySwatch: Colors.amber,
+
+      secondaryHeaderColor: Colors.white,
     ),
     routes: {
        "/Home": (context) => TelaNavegacao(),
