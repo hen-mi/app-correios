@@ -44,10 +44,7 @@ class _TelaNavegacaoState extends State<TelaNavegacao> {
                 icon: Icon(Icons.map_rounded),
                 label: "Mapa",
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.explore_rounded),
-              label: "Novos pacotes",
-            ),
+
             BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 label: "Perfil",
@@ -61,8 +58,8 @@ class _TelaNavegacaoState extends State<TelaNavegacao> {
             Home(),
             Pacotes(),
             Mapa(),
+            Perfil(),
             AdicionarNovoPacote(),
-            Perfil()
           ],
         ),
       );

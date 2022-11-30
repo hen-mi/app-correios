@@ -26,7 +26,14 @@ class _PacotesState extends State<Pacotes> {
   Widget build(BuildContext context) {
     final tabela = PacoteRepository.tabela;
     return Scaffold(
-      backgroundColor: Colors.grey[800],
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Meus Pacotes',
+            style: TextStyle(
+              color: Colors.white,
+            )),
+      ),
       body: ListView.separated(
         itemBuilder: (BuildContext context, int pacote){
           return Dismissible(
@@ -34,7 +41,7 @@ class _PacotesState extends State<Pacotes> {
               leading: Image.asset(tabela[pacote].icone),
               title: Text("Pacote: ${tabela[pacote].codigoRast}",
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -62,7 +69,7 @@ class _PacotesState extends State<Pacotes> {
             ),
           );
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: Colors.white,),
         backgroundColor: Colors.amber,
       ),
     );

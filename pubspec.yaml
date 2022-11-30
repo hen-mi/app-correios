@@ -45,7 +45,6 @@ dependencies:
   awesome_snackbar_content: ^0.1.0
   address_search_field: ^5.0.3
   location: ^4.4.0
-  geocoder: ^0.2.1
   geolocator: ^9.0.2
 
 dev_dependencies:

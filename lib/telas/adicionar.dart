@@ -26,6 +26,7 @@ class _AdicionarNovoPacoteState extends State<AdicionarNovoPacote> {
 
   final TextEditingController DestinoControlador = TextEditingController();
   final TextEditingController OrigemControlador = TextEditingController();
+  final TextEditingController ProprietarioControlador = TextEditingController();
 
   confirmar(){
     if(_form.currentState!.validate()) {
@@ -80,6 +81,32 @@ class _AdicionarNovoPacoteState extends State<AdicionarNovoPacote> {
                 key: _form,
                 child: Column(
                   children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 20),
+
+                      child: TextFormField(
+
+                        controller: ProprietarioControlador,
+                        textCapitalization: TextCapitalization.words,
+
+                        decoration: InputDecoration(hintText: "Pedro Alvares Cabral",
+                            border: OutlineInputBorder(
+                              borderRadius: new BorderRadius.circular(20.0),
+                              borderSide:  BorderSide(color: Colors.deepOrange),
+
+                            ),
+                            labelText: "Proprietário",
+                            prefixIcon: Icon(Icons.person_add_alt)
+
+                        ),
+                        validator: (value) {
+                          if(value!.isEmpty){
+                            return 'Informe um nome válido';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
                   Padding(
                     padding: EdgeInsets.only(bottom: 20),
 
@@ -132,7 +159,7 @@ class _AdicionarNovoPacoteState extends State<AdicionarNovoPacote> {
               ),
 
               Container(
-                margin: const EdgeInsets.only(top: 50.0),
+                margin: const EdgeInsets.only(top: 5.0),
                 child: SizedBox(
                   width: 150,
                   height: 45,
