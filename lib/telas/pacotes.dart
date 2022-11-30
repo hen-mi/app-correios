@@ -12,8 +12,7 @@ class _PacotesState extends State<Pacotes> {
   @override
   Widget build(BuildContext context) {
     final tabela = PacoteRepository.tabela;
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.grey[400],
         body: ListView.separated(
           itemBuilder: (BuildContext context, int pacote){
@@ -27,7 +26,6 @@ class _PacotesState extends State<Pacotes> {
           separatorBuilder: (_, ___) => Divider(),
           itemCount: tabela.length,
         ),
-      ),
     );
   }
 }

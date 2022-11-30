@@ -10,9 +10,19 @@ class Perfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Perfil',
+            style: TextStyle(
+              color: Colors.white,
+            )),
+      ),
+      body: Center(
+        child: Column(
+
         children: <Widget>[
-          Container(
+          Column(
+          children: [ Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height / 2,
             decoration: BoxDecoration(
@@ -31,7 +41,7 @@ class Perfil extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 18),
                         child: Column(
                           children: const <Widget>[
-                            Text("Entregas Feitas"),
+                            Text("Entregas Feitas:"),
                             Text("25"),
                           ],
                         ),
@@ -45,7 +55,7 @@ class Perfil extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 18),
                         child: Column(
                           children: const <Widget>[
-                            Text('Cargo'),
+                            Text('Cargo:'),
                             Text('Entregador'),
                           ],
                         ),
@@ -54,7 +64,7 @@ class Perfil extends StatelessWidget {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: EdgeInsets.all(18),
                   child: Text(
                     'Id: 4587952312456',
                     style: TextStyle(),
@@ -99,7 +109,8 @@ class Perfil extends StatelessWidget {
                       )
                     ],
                   ),
-                )
+                ),
+
               ],
             ),
           ),
@@ -183,9 +194,13 @@ class Perfil extends StatelessWidget {
                 ),
               )
             ],
-          )
-        ],
+          ),
+      ],
+    ),
+
+        ], //aqui
       ),
+    ),
     );
 
   }
