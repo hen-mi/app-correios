@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:correios/google-maps/mapa.dart';
 import 'perfil.dart';
 import 'pacotes.dart';
-import 'novospacotes.dart';
 import 'adicionar.dart';
 
 class TelaNavegacao extends StatefulWidget {
