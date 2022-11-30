@@ -60,6 +60,11 @@ class _AdicionarNovoPacoteState extends State<AdicionarNovoPacote> {
 
           appBar: AppBar(
             centerTitle: true,
+            iconTheme: IconThemeData(
+              size: 30.0,
+              color: Colors.white,
+
+            ),
             title: Text('Adicionar um novo pacote',
                 style: TextStyle(
                   color: Colors.white,

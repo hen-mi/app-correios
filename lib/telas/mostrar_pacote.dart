@@ -5,6 +5,8 @@ import 'package:correios/google-maps/rota.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:correios/google-maps/mapa.dart';
 
+import 'finalizar.dart';
+
 class Rota {
   LatLng origem;
   LatLng destino;
@@ -24,9 +26,34 @@ class _MostrarPacoteState extends State<MostrarPacote> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+            size: 30.0,
+            color: Colors.white,
+
+        ),
         title: Text(widget.pacote.codigoRast, style: TextStyle(
           color: Colors.white,
         )),
+        actions: [
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => finalizar(pacote: widget.pacote),
+                    ),
+                  );
+                },
+                child: Icon(
+                  Icons.check_circle,
+                  size: 26.0,
+
+                ),
+              )
+          ),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.only(

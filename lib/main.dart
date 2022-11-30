@@ -12,7 +12,7 @@ void main() {
      initialRoute: "/Home",
     theme: ThemeData(
       primarySwatch: Colors.amber,
-      primaryColor: Colors.amber,
+
       secondaryHeaderColor: Colors.white,
     ),
     routes: {

@@ -74,7 +74,7 @@ class Perfil extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(top: 8, bottom: 64),
                   child: Text(
-                    "Jairo Rodriguez",
+                    "Conta Admin",
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ),

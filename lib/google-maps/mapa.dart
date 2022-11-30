@@ -105,6 +105,11 @@ class _MapaState extends State<Mapa> {
 
       appBar: AppBar(
         centerTitle: true,
+        iconTheme: IconThemeData(
+          size: 30.0,
+          color: Colors.white,
+
+        ),
         title: Text('Mapa para a rota atual',
         style: TextStyle(
           color: Colors.white,
